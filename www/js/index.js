@@ -16,6 +16,8 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -34,6 +36,25 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
+        $('#btnAJAX').click(function() {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    $('#result').html(xmlhttp.responseText);
+                }
+            };
+            xmlhttp.open("GET", "http://demoserv.azurewebsites.net/", true);
+            xmlhttp.send();
+
+            // How long does it take to download an HTML file, save locally and start the app from local copy ?
+            // ... vs requesting it via html
+            // $.ajax({
+            //     url: "http://demoserv.azurewebsites.net/",
+            //     success: function(returndata) {
+            //         $('#result').html(returndata);
+            //     }
+            // });
+        });
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
