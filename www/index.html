@@ -34,6 +34,23 @@
         <meta name="msapplication-tap-highlight" content="no">
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
         <link rel="stylesheet" type="text/css" href="css/index.css">
+
+	<script>
+	  function makeCall() {
+	     var xhr = new XMLHttpRequest();
+	     xhr.onreadystatechange = function()
+	     {
+	         if (xhr.readyState == 4 && xhr.status == 200)
+	         {
+	            document.getElementById("result").innerHTML = xhr.responseText;
+	         }
+	     };
+	     //xhr.open("GET","http://demoserv.azurewebsites.net", true);
+     	     xhr.open("GET","/demoserv", true);
+	     xhr.send();
+	  }
+	</script>
+
         <title>Hello World</title>
     </head>
     <body>
@@ -43,6 +60,8 @@
                 <p class="event listening">Connecting to Device</p>
                 <p class="event received">Device is Ready</p>
             </div>
+	    <button id="btnCORS" onclick="makeCall()">Make CORS Request</button>
+	    <div id="result"></div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
