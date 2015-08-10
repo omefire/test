@@ -48,6 +48,20 @@
 	     //xhr.open("GET","http://demoserv.azurewebsites.net", true);
      	     xhr.open("GET","/demoserv", true);
 	     xhr.send();
+	  };
+
+	  function makeCall2() {
+	     var xhr = new XMLHttpRequest();
+	     xhr.onreadystatechange = function()
+	     {
+	         if (xhr.readyState == 4 && xhr.status == 200)
+	         {
+	            document.getElementById("result2").innerHTML = xhr.responseText + '2';
+	         }
+	     };
+	     //xhr.open("GET","http://demoserv.azurewebsites.net", true);
+     	     xhr.open("GET","/oms", true);
+	     xhr.send();
 	  }
 	</script>
 
@@ -62,6 +76,9 @@
             </div>
 	    <button id="btnCORS" onclick="makeCall()">Make CORS Request</button>
 	    <div id="result"></div>
+
+	    <button id="btnCORS2" onclick="makeCall2()">Make CORS Request 2</button>
+	    <div id="result2"></div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
